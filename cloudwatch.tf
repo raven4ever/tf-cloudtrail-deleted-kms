@@ -27,5 +27,5 @@ resource "aws_cloudwatch_metric_alarm" "foobar" {
   comparison_operator = "GreaterThanThreshold"
   threshold           = 1
   evaluation_periods  = 1
-  period              = 300
+  period              = 30
 }
