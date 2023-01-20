@@ -43,10 +43,16 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values   = [aws_cloudtrail.kms_trail.arn]
+      values = [
+        format("arn:aws:cloudtrail:%s:myAc%scountID:trail/%s",
+          data.aws_region.current.name,
+          data.aws_caller_identity.current.account_id,
+          var.trail_name
+        )
+      ]
     }
   }
-    statement {
+  statement {
     sid       = "AWSCloudTrailWrite"
     effect    = "Allow"
     resources = [aws_s3_bucket.trail_bucket.arn]
@@ -58,7 +64,13 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values   = [aws_cloudtrail.kms_trail.arn]
+      values = [
+        format("arn:aws:cloudtrail:%s:myAc%scountID:trail/%s",
+          data.aws_region.current.name,
+          data.aws_caller_identity.current.account_id,
+          var.trail_name
+        )
+      ]
     }
   }
 }
