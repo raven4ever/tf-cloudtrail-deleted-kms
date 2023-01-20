@@ -68,6 +68,10 @@ variable "sns_subscription_emails" {
   description = "List of emails to be notified when the CloudWatch alarm is triggered"
   type        = set(string)
   default     = ["abc123@gmail.com"]
+  validation {
+    error_message = "List must contain only valid email addresses!"
+    condition     = alltrue([for addr in var.sns_subscription_emails : can(regex("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", addr))])
+  }
 }
 
 variable "tags" {
