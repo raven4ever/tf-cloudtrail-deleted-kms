@@ -25,7 +25,13 @@ variable "cw_log_group_name" {
 variable "cw_log_metric_filter_name" {
   description = "Name of CloudWatch log group filter"
   type        = string
-  default     = "kms-trail-log-filter"
+  default     = "kms-use-deleted-key-filter"
+}
+
+variable "cw_alarm_name" {
+  description = "Name of CloudWatch alarm to be created"
+  type        = string
+  default     = "kms-use-deleted-key-alarm"
 }
 
 variable "put_cw_role_name" {
