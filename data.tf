@@ -53,10 +53,15 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     }
   }
   statement {
-    sid       = "AWSCloudTrailWrite"
-    effect    = "Allow"
-    resources = [format("%s/*", aws_s3_bucket.trail_bucket.arn)]
-    actions   = ["s3:PutObject"]
+    sid    = "AWSCloudTrailWrite"
+    effect = "Allow"
+    resources = [
+      format("%s/AWSLogs/%s*",
+        aws_s3_bucket.trail_bucket.arn,
+        data.aws_caller_identity.current.account_id
+      )
+    ]
+    actions = ["s3:PutObject"]
     principals {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
@@ -71,6 +76,11 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
           var.trail_name
         )
       ]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "s3:x-amz-acl"
+      values   = ["bucket-owner-full-control"]
     }
   }
 }
