@@ -24,7 +24,7 @@ resource "aws_cloudwatch_metric_alarm" "kms_use_deleted_key_alarm" {
   treat_missing_data  = "notBreaching"
   statistic           = "SampleCount"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 0
+  threshold           = 1
   evaluation_periods  = 1
   period              = 30
 }
