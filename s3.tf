@@ -1,7 +1,8 @@
 # Create storage bucket
 resource "aws_s3_bucket" "trail_bucket" {
-  bucket = var.s3_bucket_name
-  tags   = var.tags
+  bucket        = var.s3_bucket_name
+  force_destroy = var.s3_bucket_force_destroy
+  tags          = var.tags
 }
 
 # Make the bucket private

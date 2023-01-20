@@ -4,6 +4,12 @@ variable "s3_bucket_name" {
   default     = "000-super-trail-content-999"
 }
 
+variable "s3_bucket_force_destroy" {
+  description = "Force the destruction of the bucket"
+  type        = bool
+  default     = true
+}
+
 variable "trail_name" {
   description = "Name of the trail"
   type        = string
