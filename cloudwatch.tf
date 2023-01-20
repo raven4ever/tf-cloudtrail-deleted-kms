@@ -31,5 +31,6 @@ resource "aws_cloudwatch_metric_alarm" "foobar" {
   statistic           = "SampleCount"
   comparison_operator = "GreaterThanThreshold"
   threshold           = 1
-  evaluation_periods  = 5
+  evaluation_periods  = 2
+  period              = 300
 }
