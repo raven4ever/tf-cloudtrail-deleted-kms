@@ -19,7 +19,13 @@ variable "trail_name" {
 variable "cw_log_group_name" {
   description = "Name of CloudWatch log group"
   type        = string
-  default     = "kms-trail-log-group"
+  default     = "trail-log-group"
+}
+
+variable "cw_log_metric_filter_name" {
+  description = "Name of CloudWatch log group filter"
+  type        = string
+  default     = "kms-trail-log-filter"
 }
 
 variable "put_cw_role_name" {
@@ -32,6 +38,12 @@ variable "put_cw_role_boundary" {
   description = "Name of the boundary (if applicable) to be applied to the CloudWatch role"
   type        = string
   default     = ""
+}
+
+variable "sns_topic_name" {
+  description = "Name of the SNS topic where the alarms will be send"
+  type        = string
+  default     = "kms-trail-logs-alarm"
 }
 
 variable "tags" {
