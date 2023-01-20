@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
       values = [
-        format("arn:aws:cloudtrail:%s:myAc%scountID:trail/%s",
+        format("arn:aws:cloudtrail:%s:%s:trail/%s",
           data.aws_region.current.name,
           data.aws_caller_identity.current.account_id,
           var.trail_name
@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
       values = [
-        format("arn:aws:cloudtrail:%s:myAc%scountID:trail/%s",
+        format("arn:aws:cloudtrail:%s:%s:trail/%s",
           data.aws_region.current.name,
           data.aws_caller_identity.current.account_id,
           var.trail_name
