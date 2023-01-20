@@ -4,6 +4,11 @@ data "aws_region" "current" {}
 
 data "aws_partition" "current" {}
 
+data "aws_iam_policy" "cw_role_boundary_policy" {
+  count = var.put_cw_role_boundary == "" ? 0 : 1
+  name  = var.put_cw_role_boundary
+}
+
 data "aws_iam_policy_document" "cw_role_assume_policy" {
   statement {
     actions = ["sts:AssumeRole"]

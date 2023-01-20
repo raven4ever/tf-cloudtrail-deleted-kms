@@ -28,6 +28,12 @@ variable "put_cw_role_name" {
   default     = "kms-trail-logs-role"
 }
 
+variable "put_cw_role_boundary" {
+  description = "Name of the boundary (if applicable) to be applied to the CloudWatch role"
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "Tags to be applied to all created resources"
   type        = map(string)
