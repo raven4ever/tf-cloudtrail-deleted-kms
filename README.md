@@ -5,11 +5,10 @@ This project will create a CloudWatch Alarm based on CloudTrail events stored in
 ## How to test
 
 - go to KMS and create a custom key
-- go to EC2 and create a new EC2 instance and use the previously created key to encrypt the root volume
-- go to KMS and schedule the deletion of the previously created key
-- go to EC2 and stop & start the the previously created instance
+- go to KMS and schedule the deletion of the created key
+- go to EC2 and try to create a new volume encrypted with the created KMS key
 - go to CloudTrail and check if the KMS event was generated
-- go to CloudWatch and check if the alarm is now in `Alarm` state
+- go to CloudWatch and check if the alarm is now in `In alarm` state
 
 ## Requirements
 
