@@ -61,7 +61,13 @@ variable "cw_custom_metric_name" {
 variable "sns_topic_name" {
   description = "Name of the SNS topic where the alarms will be send"
   type        = string
-  default     = "kms-trail-logs-alarm"
+  default     = "kms-use-deleted-key-topic"
+}
+
+variable "sns_subscription_emails" {
+  description = "List of emails to be notified when the CloudWatch alarm is triggered"
+  type        = set(string)
+  default     = ["abc123@gmail.com"]
 }
 
 variable "tags" {

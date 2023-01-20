@@ -30,4 +30,5 @@ resource "aws_cloudwatch_metric_alarm" "cw_kms_use_deleted_key_alarm" {
   threshold           = 0
   evaluation_periods  = 1
   period              = 30
+  alarm_actions       = [aws_sns_topic.cw_kms_use_deleted_key_alarm_topic.arn]
 }
