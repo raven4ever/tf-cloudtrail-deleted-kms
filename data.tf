@@ -82,3 +82,20 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     }
   }
 }
+
+data "aws_iam_policy_document" "cloudwatch_sns_policy_document" {
+  statement {
+    sid    = "AllowCloudWatchToSendSns"
+    effect = "Allow"
+    principals {
+      type        = "Service"
+      identifiers = ["cloudwatch.amazonaws.com"]
+    }
+    actions = ["SNS:Publish"]
+    condition {
+      test     = "ArnLike"
+      variable = "aws:SourceArn"
+      values   = [aws_cloudwatch_metric_alarm.cw_kms_use_deleted_key_alarm.arn]
+    }
+  }
+}
