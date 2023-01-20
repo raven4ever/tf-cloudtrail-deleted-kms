@@ -1,3 +1,4 @@
+# Create a IAM role to be used by CloudTrail to upload the logs to CloudWatch
 resource "aws_iam_role" "put_cw_role" {
   name                 = var.put_cw_role_name
   assume_role_policy   = data.aws_iam_policy_document.cw_role_assume_policy.json

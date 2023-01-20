@@ -2,8 +2,6 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
-data "aws_partition" "current" {}
-
 data "aws_iam_policy" "cw_role_boundary_policy" {
   count = var.put_cw_role_boundary == "" ? 0 : 1
   name  = var.put_cw_role_boundary
@@ -25,7 +23,7 @@ data "aws_iam_policy_document" "cw_role_permissions_policy" {
     effect  = "Allow"
     actions = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = [
-      format("%s:log-stream:*", aws_cloudwatch_log_group.trail_log_group.arn)
+      format("%s:log-stream:*", aws_cloudwatch_log_group.cw_trail_log_group.arn)
     ]
   }
 }
