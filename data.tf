@@ -56,7 +56,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     sid    = "AWSCloudTrailWrite"
     effect = "Allow"
     resources = [
-      format("%s/AWSLogs/%s*",
+      format("%s/AWSLogs/%s/*",
         aws_s3_bucket.trail_bucket.arn,
         data.aws_caller_identity.current.account_id
       )
