@@ -25,12 +25,7 @@ data "aws_iam_policy_document" "cw_role_permissions_policy" {
     effect  = "Allow"
     actions = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = [
-      format("arn:%s:logs:%s:%s:log-group:%s:log-stream:*",
-        data.aws_partition.current.partition,
-        data.aws_region.current.name,
-        data.aws_caller_identity.current.account_id,
-        aws_cloudwatch_log_group.trail_log_group.name
-      )
+      format("%s:log-stream:*", aws_cloudwatch_log_group.trail_log_group.arn)
     ]
   }
 }

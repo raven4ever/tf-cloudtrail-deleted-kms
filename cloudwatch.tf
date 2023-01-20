@@ -3,11 +3,6 @@ resource "aws_cloudwatch_log_group" "trail_log_group" {
   tags = var.tags
 }
 
-resource "aws_cloudwatch_log_stream" "trail_log_stream" {
-  name           = var.cw_log_group_name
-  log_group_name = aws_cloudwatch_log_group.trail_log_group.name
-}
-
 resource "aws_cloudwatch_log_metric_filter" "kms_use_deleted_key_filter" {
   name           = var.cw_log_metric_filter_name
   pattern        = "{ $.eventSource = kms* && $.errorMessage = \"* is pending deletion.\"}"
