@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
   statement {
     sid       = "AWSCloudTrailWrite"
     effect    = "Allow"
-    resources = [aws_s3_bucket.trail_bucket.arn]
+    resources = [format("%s/*", aws_s3_bucket.trail_bucket.arn)]
     actions   = ["s3:PutObject"]
     principals {
       type        = "Service"
