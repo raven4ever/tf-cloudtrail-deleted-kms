@@ -9,8 +9,8 @@ resource "aws_cloudwatch_log_metric_filter" "kms_use_deleted_key_filter" {
   log_group_name = aws_cloudwatch_log_group.trail_log_group.name
 
   metric_transformation {
-    name      = "KMSKeyPendingDeletionErrorCount"
-    namespace = "CloudTrailLogMetrics"
+    name      = var.cw_custom_metric_name
+    namespace = var.cw_custom_metric_namespace
     value     = "1"
   }
 }
@@ -18,8 +18,8 @@ resource "aws_cloudwatch_log_metric_filter" "kms_use_deleted_key_filter" {
 resource "aws_cloudwatch_metric_alarm" "kms_use_deleted_key_alarm" {
   alarm_name          = var.cw_alarm_name
   alarm_description   = "This metric monitors usage of pending deletion KMS keys"
-  metric_name         = "KMSKeyPendingDeletionErrorCount"
-  namespace           = "CloudTrailLogMetrics"
+  metric_name         = var.cw_custom_metric_name
+  namespace           = var.cw_custom_metric_namespace
   datapoints_to_alarm = 1
   treat_missing_data  = "notBreaching"
   statistic           = "SampleCount"

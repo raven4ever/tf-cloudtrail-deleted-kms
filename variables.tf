@@ -46,6 +46,18 @@ variable "put_cw_role_boundary" {
   default     = ""
 }
 
+variable "cw_custom_metric_namespace" {
+  description = "Name of the custom metric namespace"
+  type        = string
+  default     = "CloudTrailLogMetrics"
+}
+
+variable "cw_custom_metric_name" {
+  description = "Name of the custom metric name"
+  type        = string
+  default     = "KMSKeyPendingDeletionErrorCount"
+}
+
 variable "sns_topic_name" {
   description = "Name of the SNS topic where the alarms will be send"
   type        = string
