@@ -9,7 +9,7 @@ resource "aws_cloudwatch_log_metric_filter" "kms_use_deleted_key_filter" {
   log_group_name = aws_cloudwatch_log_group.trail_log_group.name
 
   metric_transformation {
-    name      = "EventCount"
+    name      = "KMSKeyPendingDeletionErrorCount"
     namespace = "CloudTrailLogMetrics"
     value     = "1"
   }
