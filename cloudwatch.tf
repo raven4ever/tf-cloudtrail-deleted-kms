@@ -15,7 +15,7 @@ resource "aws_cloudwatch_log_metric_filter" "kms_use_deleted_key_filter" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "foobar" {
+resource "aws_cloudwatch_metric_alarm" "kms_use_deleted_key_alarm" {
   alarm_name          = var.cw_alarm_name
   alarm_description   = "This metric monitors usage of pending deletion KMS keys"
   metric_name         = aws_cloudwatch_log_metric_filter.kms_use_deleted_key_filter.name
