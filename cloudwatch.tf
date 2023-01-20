@@ -31,4 +31,5 @@ resource "aws_cloudwatch_metric_alarm" "cw_kms_use_deleted_key_alarm" {
   evaluation_periods  = 1
   period              = 10
   alarm_actions       = [aws_sns_topic.cw_kms_use_deleted_key_alarm_topic.arn]
+  tags                = var.tags
 }
