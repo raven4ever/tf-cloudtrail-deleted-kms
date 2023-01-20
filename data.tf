@@ -40,6 +40,17 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
     }
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceArn"
+      values = [
+        format("arn:aws:cloudtrail:%s:%s:trail/%s",
+          data.aws_region.current.name,
+          data.aws_caller_identity.current.account_id,
+          var.trail_name
+        )
+      ]
+    }
   }
   statement {
     sid    = "AWSCloudTrailWrite"
@@ -54,6 +65,17 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_document" {
     principals {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceArn"
+      values = [
+        format("arn:aws:cloudtrail:%s:%s:trail/%s",
+          data.aws_region.current.name,
+          data.aws_caller_identity.current.account_id,
+          var.trail_name
+        )
+      ]
     }
     condition {
       test     = "StringEquals"
